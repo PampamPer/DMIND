@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { Stack, Typography } from "@mui/material";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Typography variant="h3">ผลการประเมินของคุณ</Typography>
+      <Stack spacing={1}>
+        {/* <div id="cardResult"> */}
+        <Typography variant="h4">ความเสี่ยงโรคซึมเศร้าระดับ</Typography>
+        <div className="slider-container">
+          <input type="range" min={0} max={100} value={50} className="slider" />
+        </div>
+        <Stack direction="row" justifyContent="space-between">
+          <Typography variant="body2">ต่ำ</Typography>
+          <Typography variant="body2">ปานกลาง</Typography>
+          <Typography variant="body2">รุนแรง</Typography>
+        </Stack>
+        {/* </div> */}
+      </Stack>
+      <div id="resultText">
+        <Typography variant="h5">เยี่ยมมาก</Typography>
+        <Typography variant="subtitle1">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab deleniti
+          id asperiores voluptates recusandae sapiente sunt omnis officia cum ad
+          dolore harum, culpa iusto placeat nostrum itaque et explicabo ipsum
+          consequuntur repellendus ducimus error dolor. Temporibus, illum.
+          Magni, consequuntur blanditiis ea harum adipisci a quam modi nesciunt
+          repudiandae expedita quis.
+        </Typography>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
