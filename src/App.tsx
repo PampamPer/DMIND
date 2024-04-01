@@ -5,13 +5,37 @@ function App() {
   return (
     <>
       <Typography variant="h3">ผลการประเมินของคุณ</Typography>
-      <Stack spacing={1}>
+      <Stack
+        gap='16px'
+        px="40px"
+        py="8px"
+        alignItems='center'
+        sx={{ backgroundColor: "#CEEEDC", borderRadius: "25px" }}
+      >
         {/* <div id="cardResult"> */}
         <Typography variant="h4">ความเสี่ยงโรคซึมเศร้าระดับ</Typography>
-        <div className="slider-container">
-          <input type="range" min={0} max={100} value={50} className="slider" />
-        </div>
-        <Stack direction="row" justifyContent="space-between">
+        <Stack
+          px="8px"
+          py="4px"
+          style={{
+            backgroundColor: "#60C78F",
+            width: "fit-content",
+            borderRadius: "25px",
+          }}
+        >
+          <Typography variant="h6">ต่ำ</Typography>
+        </Stack>
+        {/* <div className="slider-container"> */}
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={50}
+            className="slider"
+            id="slider"
+          />
+        {/* </div> */}
+        <Stack direction="row" justifyContent="space-between" width='100%'>
           <Typography variant="body2">ต่ำ</Typography>
           <Typography variant="body2">ปานกลาง</Typography>
           <Typography variant="body2">รุนแรง</Typography>
