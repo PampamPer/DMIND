@@ -1,10 +1,52 @@
 import "./App.css";
 import { Stack, Typography, Button } from "@mui/material";
+import Loading from "./Loading";
+import axios from "axios";
 
 function App() {
+  axios.defaults.baseURL = "http://localhost:8080/api";
+  // const config = {
+  //   headers: {
+  //     Accept: "application/json, text/plain, /",
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // };
+
+  // useEffect(() => {
+  //   console.log('i fire once');
+  //   axios
+  //     .get("/start")
+  //     .then((res) => {
+  //       const sessionID = res.data.data['session_id']
+  //       getResult(sessionID)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
+  // const getResult = (sessionID: string) => {
+  //   console.log(sessionID)
+  // }
+
+  const sessionID = axios
+    .get("/start")
+    .then((res) => {
+      const sessID = res.data.data["session_id"]
+      getResult(sessID)
+      return sessID;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  const getResult = (sessionID: string) => {
+    console.log(sessionID)
+  }
+
   return (
-    <>
-      <Stack gap="12px" alignItems='center'>
+    <> 
+      <Stack gap="12px" alignItems="center">
         <div className="background">
           <div className="circle circle1"></div>
           <div className="circle circle2"></div>
@@ -46,6 +88,7 @@ function App() {
               value={50}
               className="slider"
               id="slider"
+              readOnly
             />
             {/* </div> */}
             <Stack direction="row" justifyContent="space-between" width="100%">
@@ -77,7 +120,7 @@ function App() {
           ให้คะแนนความพึงพอใจ
         </Button>
       </Stack>
-      
+      <Loading />
     </>
   );
 }
