@@ -1,17 +1,11 @@
 import "./App.css";
-import { Stack, Typography, Button, Drawer } from "@mui/material";
-import Loading from "./Loading";
+import { Stack, Typography,} from "@mui/material";
+// import Loading from "./Loading";
 import axios from "axios";
-import { useState } from "react";
 import CommentDrawer from "./CommentDrawer";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:8080/api";
-  const [open, setOpen] = useState(false);
-
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-  };
 
   // const config = {
   //   headers: {
@@ -115,24 +109,9 @@ function App() {
             </Typography>
           </Stack>
         </Stack>
-        <Button
-          variant="text"
-          fullWidth
-          sx={{
-            backgroundColor: "#FDFDFE",
-            color: "#767DFF",
-            borderRadius: "50px",
-            boxShadow: "0px 2px 5px rgba(25, 28, 50, 0.1)",
-          }}
-          onClick={toggleDrawer(true)}
-        >
-          ให้คะแนนความพึงพอใจ
-        </Button>
+        <CommentDrawer />
       </Stack>
-      <Drawer open={open} anchor="bottom" onClose={toggleDrawer(false)}>
-        <Typography variant="h1">It's work</Typography>
-        <CommentDrawer/>
-      </Drawer>
+
       {/* <Loading /> */}
     </>
   );
