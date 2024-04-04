@@ -1,10 +1,18 @@
 import "./App.css";
-import { Stack, Typography, Button } from "@mui/material";
+import { Stack, Typography, Button, Drawer } from "@mui/material";
 import Loading from "./Loading";
 import axios from "axios";
+import { useState } from "react";
+import CommentDrawer from "./CommentDrawer";
 
 function App() {
   axios.defaults.baseURL = "http://localhost:8080/api";
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
+
   // const config = {
   //   headers: {
   //     Accept: "application/json, text/plain, /",
@@ -29,23 +37,23 @@ function App() {
   //   console.log(sessionID)
   // }
 
-  const sessionID = axios
-    .get("/start")
-    .then((res) => {
-      const sessID = res.data.data["session_id"]
-      getResult(sessID)
-      return sessID;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  // const sessionID = axios
+  //   .get("/start")
+  //   .then((res) => {
+  //     const sessID = res.data.data["session_id"]
+  //     getResult(sessID)
+  //     return sessID;
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
 
-  const getResult = (sessionID: string) => {
-    console.log(sessionID)
-  }
+  // const getResult = (sessionID: string) => {
+  //   console.log(sessionID)
+  // }
 
   return (
-    <> 
+    <>
       <Stack gap="12px" alignItems="center">
         <div className="background">
           <div className="circle circle1"></div>
@@ -116,11 +124,16 @@ function App() {
             borderRadius: "50px",
             boxShadow: "0px 2px 5px rgba(25, 28, 50, 0.1)",
           }}
+          onClick={toggleDrawer(true)}
         >
           ให้คะแนนความพึงพอใจ
         </Button>
       </Stack>
-      <Loading />
+      <Drawer open={open} anchor="bottom" onClose={toggleDrawer(false)}>
+        <Typography variant="h1">It's work</Typography>
+        <CommentDrawer/>
+      </Drawer>
+      {/* <Loading /> */}
     </>
   );
 }
